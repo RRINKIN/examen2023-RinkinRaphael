@@ -3,14 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Chanson;
-use App\Entity\Genre;
 use App\Form\ChansonType;
+use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Validator\Constraints\DateTime as ConstraintsDateTime;
 
 class ChansonController extends AbstractController
 {
@@ -28,10 +27,10 @@ class ChansonController extends AbstractController
         // creates object
         $chanson = new Chanson();
         // creates form
-        //$chanson->setDateAjout(DateType::class);
+        $chanson->setDateAjout(new DateTime());
         $form = $this->createForm(ChansonType::class, $chanson);
         // capture request
-        /*$form->handleRequest($request);
+        $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $chanson = $form->getData();
             // Saving in DB
@@ -39,7 +38,7 @@ class ChansonController extends AbstractController
             $entityManager->flush();
             // redirect to home page
             return $this->redirectToRoute('app_chansons');
-        }*/
+        }
 
         return $this->render('chanson/ajouter.html.twig', [
             'form' => $form,

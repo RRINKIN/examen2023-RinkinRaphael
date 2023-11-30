@@ -3,8 +3,10 @@
 namespace App\Form;
 
 use App\Entity\Chanson;
+use App\Entity\Genre;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
-use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
+use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -19,8 +21,11 @@ class ChansonType extends AbstractType
             ->add('Album', TextType::class)
             ->add('paroles', TextType::class)
             ->add('auteur', TextType::class)
-            ->add('dateSortie', DateTimeType::class)
-            ->add('genre', TextType::class)
+            ->add('dateSortie', DateType::class)
+            ->add('genre', EntityType::class, [
+                'class' => Genre::class,
+                'choice_label' => 'nom',
+            ])
             ->add('Sauver', SubmitType::class, ['label' => 'Sauver'])
         ;
     }
