@@ -7,6 +7,7 @@ use App\Form\ChansonType;
 use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\Form\Extension\Core\Type\DateTimeType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -22,15 +23,6 @@ class ChansonController extends AbstractController
             'Chansons' => $chansons,
         ]);
     }
-
-    #[Route('/chanson/{id}', name: 'app_chanson')]
-    public function chanson(Chanson $chanson): Response
-    {
-        return $this->render('chanson/chanson.html.twig', [
-            'chanson' => $chanson,
-        ]);
-    }
-
 
     #[Route('/chanson/ajouter', name: 'app_chanson_ajouter')]
     public function ajouter(Request $request, EntityManagerInterface $entityManager): Response
@@ -53,6 +45,14 @@ class ChansonController extends AbstractController
 
         return $this->render('chanson/ajouter.html.twig', [
             'form' => $form,
+        ]);
+    }
+
+    #[Route('/chanson/{id}', name: 'app_chanson')]
+    public function chanson(Chanson $chanson): Response
+    {
+        return $this->render('chanson/chanson.html.twig', [
+            'chanson' => $chanson,
         ]);
     }
 }
