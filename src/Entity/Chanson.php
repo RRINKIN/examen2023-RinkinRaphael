@@ -27,7 +27,7 @@ class Chanson
     private ?string $auteur = null;
 
     #[ORM\Column]
-    private ?int $votes = null;
+    private ?int $votes = 0;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
     private ?\DateTimeInterface $dateAjout = null;
