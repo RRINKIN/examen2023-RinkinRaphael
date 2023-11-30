@@ -9,14 +9,13 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Ma liste de chansons</h1>
-    {% for chanson in Chansons %}
-    <h2><a href="{{ path('app_chanson', {'id': chanson.id}) }}">Titre: {{chanson.titre}}</a></h2>
+    <h1>Détails d'un titre</h1>
+
+    <h2>Titre: {{chanson.titre}}</h2>
     <p>Album: {{chanson.Album}}</p>
     <p>Paroles: {{chanson.paroles}}</p>
     <p>Auteurs: {{chanson.auteur}}</p>
     <p>Votes: {{chanson.votes}}</p>
     <p>Genre: {{chanson.genre}}</p>
-    {% endfor %}
 </div>
 {% endblock %}

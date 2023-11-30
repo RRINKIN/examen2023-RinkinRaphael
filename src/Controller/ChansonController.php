@@ -14,12 +14,23 @@ use Symfony\Component\Routing\Annotation\Route;
 class ChansonController extends AbstractController
 {
     #[Route('/', name: 'app_chansons')]
-    public function chansons(): Response
+    public function chansons(EntityManagerInterface $entityManager): Response
     {
+        $repository = $entityManager->getRepository(Chanson::class);
+        $chansons = $repository->findAll();
         return $this->render('chanson/index.html.twig', [
-            'Chansons' => 'ChansonController',
+            'Chansons' => $chansons,
         ]);
     }
+
+    #[Route('/chanson/{id}', name: 'app_chanson')]
+    public function chanson(Chanson $chanson): Response
+    {
+        return $this->render('chanson/chanson.html.twig', [
+            'chanson' => $chanson,
+        ]);
+    }
+
 
     #[Route('/chanson/ajouter', name: 'app_chanson_ajouter')]
     public function ajouter(Request $request, EntityManagerInterface $entityManager): Response

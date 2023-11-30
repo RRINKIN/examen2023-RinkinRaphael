@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello GenreController!{% endblock %}
+{% block title %}Liste de genres{% endblock %}
 
 {% block body %}
 <style>
@@ -9,12 +9,10 @@
 </style>
 
 <div class="example-wrapper">
-    <h1>Hello {{ controller_name }}! ✅</h1>
-
-    This friendly message is coming from:
-    <ul>
-        <li>Your controller at <code><a href="{{ '/Applications/Symfony/examen2023-RinkinRaphael/src/Controller/GenreController.php'|file_link(0) }}">src/Controller/GenreController.php</a></code></li>
-        <li>Your template at <code><a href="{{ '/Applications/Symfony/examen2023-RinkinRaphael/templates/genre/index.html.twig'|file_link(0) }}">templates/genre/index.html.twig</a></code></li>
-    </ul>
+    <h1>Ma liste de genres</h1>
+    {% for genre in genres %}
+    <h2>Titre: {{genre.nom}}</h2>
+    <p>Album: {{genre.description}}</p>
+    {% endfor %}
 </div>
 {% endblock %}
